@@ -102,7 +102,7 @@ if len(face_name)>1:
 		)
 		
 		# if face detected and not multi face
-		if not len(faces)>1:
+		if len(faces)==1:
 			#write face to directory /images/{facename}
 			cv2.imwrite(os.path.join(IMAGE_DIR, "face_"+str(time.time())+".jpg"), frame);
 			cv2.rectangle(frame, (faces[0]['box'][0], faces[0]['box'][1]), (faces[0]['box'][0]+faces[0]['box'][2], faces[0]['box'][1]+faces[0]['box'][3]), (0,255,0), 2)
@@ -110,7 +110,7 @@ if len(face_name)>1:
 			#if face couldn't detect or more than one face, warn user
 			cv2.putText(
 				frame,
-				"More than one face detected",
+				"More than one face or no face detected",
 				(100,100),
 				cv2.FONT_HERSHEY_COMPLEX,
 				1,
